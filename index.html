@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WINWIN SEWING - Đối Tác May Mặc Xuất Khẩu Đạt Chuẩn Quốc Tế WRAP Gold</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Playfair Display -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            cyan: '#0ea5e9', // Màu xanh lam rực rỡ từ logo gốc
+                            cyanHover: '#0284c7',
+                            lime: '#84cc16', // Màu xanh mạ tươi sáng đầy sinh khí
+                            limeHover: '#65a30d',
+                            dark: '#0f172a', // Sắc sẫm sang trọng cho văn bản tiêu đề
+                            slate: '#1e293b',
+                            light: '#f8fafc', // Nền sáng sạch sẽ tinh tế
+                            cardBg: '#ffffff'
+                        }
+                    },
+                    boxShadow: {
+                        'premium': '0 10px 30px -10px rgba(14, 165, 233, 0.1)',
+                        'glow': '0 4px 14px 0 rgba(132, 204, 22, 0.35)',
+                        'cyanGlow': '0 4px 14px 0 rgba(14, 165, 233, 0.35)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #0ea5e9 0%, #84cc16 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #0ea5e9 0%, #84cc16 100%);
+        }
+        .hero-pattern {
+            background-color: #ffffff;
+            background-image: radial-gradient(at 0% 0%, rgba(14, 165, 233, 0.05) 0, transparent 50%), 
+                              radial-gradient(at 100% 100%, rgba(132, 204, 22, 0.04) 0, transparent 50%);
+        }
+        .active-tab {
+            border-color: #0ea5e9;
+            color: #0ea5e9;
+            background-color: rgba(14, 165, 233, 0.05);
+        }
+        .animate-spin-slow {
+            animation: spin 12s linear infinite;
+        }
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-700 bg-white overflow-x-hidden">
+
+<!-- FLOATING DEVELOPER CONTROL BUTTON -->
+<div class="fixed bottom-6 right-6 z-50">
+    <button onclick="toggleConfigurator()" class="bg-brand-cyan hover:bg-brand-cyanHover text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110 relative group border-2 border-white">
+        <i class="fa-solid fa-gears text-xl animate-spin-slow"></i>
+        <span class="absolute right-16 bg-slate-900 text-white text-xs py-1.5 px-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-md pointer-events-none">Thiết lập ảnh Google Drive ⚙️</span>
+        <span class="absolute -top-1 -right-1 flex h-3.5 w-3.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-lime opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-brand-lime border border-white"></span>
+        </span>
+    </button>
+</div>
+
+<!-- CONFIGURATOR MODAL / DRAWER -->
+<div id="driveConfigurator" class="fixed top-0 right-0 h-full w-full max-w-lg bg-white shadow-2xl z-50 transform translate-x-full transition-transform duration-300 overflow-hidden border-l border-slate-100 flex flex-col">
+    <div class="p-6 bg-slate-900 text-white flex items-center justify-between">
+        <div class="flex items-center gap-2">
+            <i class="fa-solid fa-folder-open text-brand-lime text-xl"></i>
+            <div>
+                <h3 class="font-bold text-base leading-tight">Cấu hình ảnh Google Drive</h3>
+                <p class="text-[10px] text-slate-400">Đồng bộ trực tiếp tệp tin ảnh từ Google Folder của bạn</p>
+            </div>
+        </div>
+        <button onclick="toggleConfigurator()" class="text-slate-400 hover:text-white text-lg"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    
+    <div class="p-6 overflow-y-auto flex-1 space-y-6">
+        <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 text-xs text-blue-800 leading-relaxed space-y-2">
+            <p class="font-bold"><i class="fa-solid fa-circle-info mr-1"></i> Hướng dẫn kết nối ảnh:</p>
+            <ol class="list-decimal pl-4 space-y-1">
+                <li>Truy cập thư mục Google Drive: <a href="https://drive.google.com/drive/folders/1ejbTNOJwEogbGREa-gPoyxF2SRuugIsI?usp=sharing" target="_blank" class="font-bold underline text-brand-cyan hover:text-brand-cyanHover">Mở thư mục của tôi <i class="fa-solid fa-up-right-from-square text-[9px]"></i></a></li>
+                <li>Nhấp chuột phải vào ảnh mong muốn -> Chọn <strong>Chia sẻ (Share)</strong> -> Chuyển quyền tiếp cận sang <strong>Bất kỳ ai có liên kết (Anyone with link)</strong> -> Chọn <strong>Sao chép liên kết (Copy link)</strong>.</li>
+                <li>Dán liên kết tương ứng vào ô bên dưới. Hệ thống sẽ tự lọc mã ID và nạp ảnh trực tiếp.</li>
+            </ol>
+        </div>
+
+        <div class="space-y-4">
+            <h4 class="font-bold text-slate-900 text-sm border-b border-slate-100 pb-2"><i class="fa-solid fa-image text-slate-400 mr-1"></i> Quản lý các phân khu ảnh:</h4>
+            
+            <!-- Dynamic fields generated via JavaScript -->
+            <div id="configFields" class="space-y-4"></div>
+        </div>
+    </div>
+    
+    <div class="p-4 bg-slate-50 border-t border-slate-100 grid grid-cols-2 gap-3">
+        <button onclick="resetToDefaults()" class="py-2.5 text-xs text-slate-600 hover:text-slate-800 font-semibold border border-slate-200 bg-white rounded-lg transition-colors">
+            Khôi phục ảnh gốc
+        </button>
+        <button onclick="saveAndApplyImages()" class="py-2.5 text-xs text-slate-900 bg-brand-lime hover:bg-brand-limeHover font-bold rounded-lg shadow-glow transition-all">
+            Áp dụng thay đổi
+        </button>
+    </div>
+</div>
+
+<!-- HEADER / NAVIGATION -->
+<header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100 transition-all duration-300 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+            <!-- Logo Section -->
+            <div class="flex items-center gap-3">
+                <div class="flex items-center">
+                    <svg class="h-10 w-auto" viewBox="0 0 160 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 10 L22 35 L34 10" stroke="#0ea5e9" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M28 10 L40 35 L52 10" stroke="#0ea5e9" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M52 10 L64 35 L76 10" stroke="#0ea5e9" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M70 10 L82 35 L94 10" stroke="#0ea5e9" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M104 10 L112 20 L120 10 L112 0 Z" fill="#84cc16"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="block text-brand-dark font-extrabold leading-none tracking-wider text-base">WINWIN SEWING</span>
+                    <span class="text-[10px] text-brand-cyan font-bold tracking-widest uppercase">Joint Stock Company</span>
+                </div>
+            </div>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#about" class="text-slate-600 hover:text-brand-cyan transition-colors text-sm font-semibold tracking-wide">Về Chúng Tôi</a>
+                <a href="#standards" class="text-slate-600 hover:text-brand-cyan transition-colors text-sm font-semibold tracking-wide">Tiêu Chuẩn Gold</a>
+                <a href="#products" class="text-slate-600 hover:text-brand-cyan transition-colors text-sm font-semibold tracking-wide">Sản Phẩm Thực Tế</a>
+                <a href="#showroom" class="text-slate-600 hover:text-brand-cyan transition-colors text-sm font-semibold tracking-wide">Xưởng & Thiết Bị</a>
+                <a href="#calculator" class="text-slate-600 hover:text-brand-cyan transition-colors text-sm font-semibold tracking-wide">Tính Chi Phí</a>
+                <a href="#faq" class="text-slate-600 hover:text-brand-cyan transition-colors text-sm font-semibold tracking-wide">Giải Đáp</a>
+            </nav>
+
+            <!-- Call to Action -->
+            <div class="hidden lg:flex items-center gap-4">
+                <a href="tel:+84912821228" class="text-slate-700 hover:text-brand-cyan transition-colors font-semibold text-sm flex items-center gap-2">
+                    <i class="fa-solid fa-phone-volume text-brand-cyan"></i>
+                    +84 912 821 228
+                </a>
+                <a href="#cta" class="bg-brand-cyan text-white px-5 py-2.5 rounded-full font-bold text-sm tracking-wide shadow-cyanGlow hover:bg-brand-cyanHover hover:scale-105 transition-all duration-300">
+                    Gửi Yêu Cầu May Mẫu
+                </a>
+            </div>
+
+            <!-- Mobile menu button -->
+            <button type="button" onclick="toggleMobileMenu()" class="md:hidden text-slate-700 hover:text-brand-cyan focus:outline-none">
+                <i id="menuIcon" class="fa-solid fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Container -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-slate-100 transition-all duration-300">
+        <div class="px-4 pt-2 pb-6 space-y-1 text-center shadow-lg">
+            <a href="#about" onclick="toggleMobileMenu()" class="block px-3 py-3 rounded-md text-base font-semibold text-slate-700 hover:bg-slate-50 hover:text-brand-cyan">Về Chúng Tôi</a>
+            <a href="#standards" onclick="toggleMobileMenu()" class="block px-3 py-3 rounded-md text-base font-semibold text-slate-700 hover:bg-slate-50 hover:text-brand-cyan">Tiêu Chuẩn Gold</a>
+            <a href="#products" onclick="toggleMobileMenu()" class="block px-3 py-3 rounded-md text-base font-semibold text-slate-700 hover:bg-slate-50 hover:text-brand-cyan">Sản Phẩm Thực Tế</a>
+            <a href="#showroom" onclick="toggleMobileMenu()" class="block px-3 py-3 rounded-md text-base font-semibold text-slate-700 hover:bg-slate-50 hover:text-brand-cyan">Xưởng & Thiết Bị</a>
+            <a href="#calculator" onclick="toggleMobileMenu()" class="block px-3 py-3 rounded-md text-base font-semibold text-slate-700 hover:bg-slate-50 hover:text-brand-cyan">Tính Chi Phí</a>
+            <a href="#faq" onclick="toggleMobileMenu()" class="block px-3 py-3 rounded-md text-base font-semibold text-slate-700 hover:bg-slate-50 hover:text-brand-cyan">Giải Đáp</a>
+            <a href="#cta" onclick="toggleMobileMenu()" class="mt-4 block w-full bg-brand-cyan text-white py-3 rounded-full font-bold text-base shadow-cyanGlow">Nhận Báo Giá Đơn Hàng</a>
+        </div>
+    </div>
+</header>
+
+<!-- 1. HERO SECTION (Headline & Hình ảnh sản xuất thực tế) -->
+<section class="hero-pattern pt-32 pb-20 md:pt-40 md:pb-28 text-slate-800 relative overflow-hidden">
+    <!-- Decorative background elements -->
+    <div class="absolute -top-10 -left-10 w-96 h-96 bg-brand-cyan/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-10 right-10 w-80 h-80 bg-brand-lime/10 rounded-full blur-3xl pointer-events-none"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Hero Text Block -->
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-cyan/10 border border-brand-cyan/20 text-brand-cyan text-xs sm:text-sm font-bold tracking-wide">
+                    <span class="flex h-2.5 w-2.5 relative">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-lime opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-lime"></span>
+                    </span>
+                    <i class="fa-solid fa-award"></i> ĐẠT CHỨNG NHẬN WRAP GOLD QUỐC TẾ (2025 - 2026)
+                </div>
+                
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight text-slate-900">
+                    Sản Xuất May Mặc <br class="hidden sm:inline">
+                    <span class="gradient-text">Chuẩn Quốc Tế</span> <br>
+                    Đồng Hành Cùng Bạn
+                </h1>
+                
+                <p class="text-slate-600 text-lg sm:text-xl max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+                    <strong>WINWIN SEWING</strong> – Nhà máy sản xuất OEM/ODM uy tín hàng đầu. Chuyên thiết kế rập, may mẫu thử và sản xuất hàng xuất khẩu Châu Âu, Mỹ, Á với kỹ thuật may Jeans, Jacket hoàn hảo trên từng đường kim mũi chỉ.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
+                    <a href="#calculator" class="bg-brand-cyan hover:bg-brand-cyanHover text-white px-8 py-4 rounded-xl font-bold text-lg shadow-cyanGlow hover:scale-105 transition-all flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-calculator"></i> Ước Tính Chi Phí Ngay
+                    </a>
+                    <a href="#about" class="bg-white text-slate-700 border border-slate-200 px-8 py-4 rounded-xl font-bold text-lg hover:bg-slate-50 transition-all flex items-center justify-center gap-3">
+                        Xem Năng Lực Sản Xuất <i class="fa-solid fa-arrow-down"></i>
+                    </a>
+                </div>
+
+                <!-- Fast Facts -->
+                <div class="grid grid-cols-3 gap-4 pt-8 border-t border-slate-200 text-left max-w-lg mx-auto lg:mx-0">
+                    <div>
+                        <span class="block text-2xl sm:text-3xl font-extrabold text-brand-cyan">260+</span>
+                        <span class="text-xs sm:text-sm text-slate-500 font-medium">Nhân sự tay nghề cao</span>
+                    </div>
+                    <div>
+                        <span class="block text-2xl sm:text-3xl font-extrabold text-brand-lime">6</span>
+                        <span class="text-xs sm:text-sm text-slate-500 font-medium">Dây chuyền hiện đại</span>
+                    </div>
+                    <div>
+                        <span class="block text-2xl sm:text-3xl font-extrabold text-slate-800">9 Tỷ VNĐ</span>
+                        <span class="text-xs sm:text-sm text-slate-500 font-medium">Vốn điều lệ vững vàng</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Image Block with dynamic Google Drive image or fallback local image -->
+            <div class="lg:col-span-5 relative">
+                <div class="relative mx-auto max-w-md lg:max-w-none">
+                    <!-- Tech decoration frame -->
+                    <div class="absolute inset-0 bg-gradient-to-tr from-brand-cyan to-brand-lime rounded-3xl rotate-3 scale-102 opacity-20 blur-md"></div>
+                    <div class="relative bg-white border border-slate-100 rounded-3xl p-4 overflow-hidden shadow-xl">
+                        <div class="relative rounded-2xl overflow-hidden aspect-[4/5] bg-slate-150">
+                            <!-- Target elements with dynamic ID bindings and instant inline fallback -->
+                            <img id="img-hero-img" 
+							src="../images/ssdsd.jpg" onerror="this.src='../images/z7256412720281_d97760f5771c7d559275adf49d1b0220.jpg'; this.onerror=null;" alt="Sản phẩm Denim Xuất Khẩu thực tế từ WINWIN" class="w-full h-full object-cover">
+                            <!-- Overlay Badge -->
+                            <div class="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md p-4 rounded-xl border border-slate-100 shadow-lg">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <span class="text-[10px] uppercase tracking-widest text-brand-cyan font-bold block">Hình Ảnh Thực Tế</span>
+                                        <h4 class="text-slate-900 font-bold text-sm">Quần Jeans Nữ Dáng Loe Cao Cấp</h4>
+                                    </div>
+                                    <span class="bg-brand-lime text-slate-900 text-[10px] font-bold px-2.5 py-1 rounded">Mẫu Thử Đạt Chuẩn</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- 2. TRUST / SOCIAL PROOF -->
+<section id="standards" class="py-16 bg-white border-y border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center space-y-4 mb-12">
+            <h2 class="text-xs uppercase font-extrabold tracking-widest text-brand-cyan">Hồ Sơ Pháp Lý & Tiêu Chuẩn Quốc Tế</h2>
+            <p class="text-3xl font-extrabold text-slate-900">Cam Kết Vững Vàng Về Trách Nhiệm Xã Hội</p>
+            <div class="w-16 h-1 bg-brand-lime mx-auto rounded-full"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+            
+            <!-- Left: Certification Details -->
+            <div class="flex flex-col justify-between space-y-6">
+                <div class="bg-brand-light p-8 rounded-2xl shadow-premium border border-slate-100 flex-1 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-2xl bg-brand-lime/10 flex items-center justify-center text-brand-lime shrink-0 shadow-sm">
+                                <i class="fa-solid fa-shield-halved text-2xl"></i>
+                            </div>
+                            <div>
+                                <span class="px-2.5 py-0.5 text-xs font-bold bg-brand-lime/20 text-brand-limeHover rounded-full">Chứng chỉ quốc tế</span>
+                                <h3 class="text-xl font-bold text-slate-900 mt-1">WRAP GOLD Certification</h3>
+                                <p class="text-xs text-slate-500 mt-1">Mã số cơ sở WRAP ID: 131152 | Hiệu lực: 18/02/2025 - 18/02/2026</p>
+                            </div>
+                        </div>
+                        
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            Chứng nhận <strong>Worldwide Responsible Accredited Production (WRAP)</strong> hạng Vàng là thước đo chuẩn mực toàn cầu, khẳng định WINWIN luôn tuân thủ luật lao động, môi trường làm việc nhân đạo, an toàn sức khỏe và cam kết sản xuất bền vững.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 pt-6 mt-6 border-t border-slate-200">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-brand-cyan"></i>
+                            <span class="text-xs font-bold text-slate-700">Đạo đức kinh doanh</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-brand-cyan"></i>
+                            <span class="text-xs font-bold text-slate-700">Bảo vệ lao động</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-brand-cyan"></i>
+                            <span class="text-xs font-bold text-slate-700">Quy trình thân thiện</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-brand-cyan"></i>
+                            <span class="text-xs font-bold text-slate-700">Xuất khẩu EU & Mỹ</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Interactive Digital Certificate Viewer -->
+            <div class="bg-slate-900 rounded-2xl p-8 text-white relative overflow-hidden shadow-xl flex flex-col justify-between">
+                <div class="absolute top-0 right-0 bg-brand-lime/10 text-brand-lime text-9xl p-4 font-black pointer-events-none opacity-20">
+                    GOLD
+                </div>
+                
+                <div class="space-y-6">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                        <span class="text-[10px] uppercase tracking-widest text-slate-400 font-bold">Worldwide Responsible Accredited Production</span>
+                        <span class="text-xs text-brand-lime font-bold"><i class="fa-solid fa-circle-check"></i> Đạt Chuẩn Gold</span>
+                    </div>
+
+                    <div class="space-y-2 py-2">
+                        <p class="text-brand-cyan text-xs font-bold uppercase tracking-wider">Cơ sở sản xuất chính thức:</p>
+                        <p class="text-lg font-bold text-white">WINWIN SEWING JOINT STOCK COMPANY</p>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Lô 41A, Khu G, KCN Đình Hương - Tây Bắc Ga (Giai đoạn 2), Phường Đông Cương, TP. Thanh Hoá, Việt Nam.
+                        </p>
+                    </div>
+
+                    <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 flex justify-between items-center">
+                        <div>
+                            <span class="block text-[9px] uppercase text-slate-400">WRAP ID</span>
+                            <span class="text-sm font-mono font-bold text-brand-cyan">131152</span>
+                        </div>
+                        <div class="text-right">
+                            <span class="block text-[9px] uppercase text-slate-400">Giám đốc pháp nhân</span>
+                            <span class="text-xs font-bold text-white">Nguyễn Thị Vân Anh</span>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-[11px] text-slate-400 text-center italic mt-6 border-t border-slate-800 pt-4">
+                    "Chứng nhận số hóa bảo mật 2025 - 2026, bảo chứng đầu ra tự do thương mại quốc tế."
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- 3. FEATURES & BENEFITS (Hiểu giải pháp của WINWIN) -->
+<section id="about" class="py-20 bg-brand-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center space-y-4 mb-16">
+            <h2 class="text-xs uppercase font-extrabold tracking-widest text-brand-cyan">Giải Pháp Toàn Diện Của Chúng Tôi</h2>
+            <p class="text-3xl sm:text-4xl font-extrabold text-slate-900">Chuỗi Cung Ứng May Mặc OEM/ODM Vững Chắc</p>
+            <div class="w-20 h-1.5 bg-brand-cyan mx-auto rounded-full"></div>
+            <p class="text-slate-600 max-w-2xl mx-auto text-sm sm:text-base">
+                Từ thiết kế rập mẫu nhanh, lựa chọn nguyên phụ liệu đến quy trình may, hoàn thiện, đóng gói xuất khẩu. Chúng tôi mang lại sự tối ưu tuyệt đối trong mọi công đoạn sản xuất.
+            </p>
+        </div>
+
+        <!-- Product Categories grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            
+            <!-- Category 1 -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-100 hover:border-brand-cyan hover:shadow-premium transition-all duration-300 group">
+                <div class="w-12 h-12 rounded-xl bg-brand-cyan/10 flex items-center justify-center text-brand-cyan mb-6 group-hover:scale-110 transition-transform shadow-sm">
+                    <i class="fa-solid fa-shirt text-xl"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900 mb-2">Thời trang Nam / Nữ</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Sản xuất may mặc đa dạng: áo thun, sơ mi, váy đầm và đặc biệt thế mạnh là <strong>quần Jeans / Kaki</strong> kỹ thuật cao với chất liệu co giãn cao cấp.
+                </p>
+            </div>
+
+            <!-- Category 2 -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-100 hover:border-brand-cyan hover:shadow-premium transition-all duration-300 group">
+                <div class="w-12 h-12 rounded-xl bg-brand-lime/10 flex items-center justify-center text-brand-lime mb-6 group-hover:scale-110 transition-transform shadow-sm">
+                    <i class="fa-solid fa-user-shield text-xl"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900 mb-2">Đồng phục chuyên nghiệp</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Nhà cung ứng tin cậy cho đồng phục học sinh, đồng phục công sở văn phòng, đồng phục bảo hộ lao động đạt tiêu chuẩn nhận diện thương hiệu.
+                </p>
+            </div>
+
+            <!-- Category 3 -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-100 hover:border-brand-cyan hover:shadow-premium transition-all duration-300 group">
+                <div class="w-12 h-12 rounded-xl bg-sky-100 flex items-center justify-center text-sky-600 mb-6 group-hover:scale-110 transition-transform shadow-sm">
+                    <i class="fa-solid fa-arrows-spin text-xl"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900 mb-2">Trọn gói dịch vụ OEM/ODM</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Hỗ trợ phát triển bản vẽ rập, may nhanh mẫu thử vàng (Golden Sample) hoàn toàn miễn phí khi tiến hành ký kết sản xuất đơn hàng loạt.
+                </p>
+            </div>
+
+            <!-- Category 4 -->
+            <div class="bg-white p-6 rounded-2xl border border-slate-100 hover:border-brand-cyan hover:shadow-premium transition-all duration-300 group">
+                <div class="w-12 h-12 rounded-xl bg-yellow-100 flex items-center justify-center text-yellow-600 mb-6 group-hover:scale-110 transition-transform shadow-sm">
+                    <i class="fa-solid fa-box-open text-xl"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-900 mb-2">Phụ kiện may mặc</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Thiết kế và dệt may các sản phẩm phụ trợ như khẩu trang vải kháng khuẩn, tạp dề bảo hộ, nón mũ vải, túi canvas quà tặng sự kiện.
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Highlight Box: Why Choose Us -->
+        <div class="mt-20 bg-white rounded-3xl p-8 md:p-12 border border-slate-100 shadow-premium relative overflow-hidden">
+            <div class="absolute bottom-0 right-0 w-80 h-80 bg-brand-lime/5 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-5 space-y-6">
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-tight">Vì Sao WINWIN Là Đối Tác Đáng Tin Cậy Nhất?</h3>
+                    <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                        Triết lý hoạt động xuyên suốt <strong>"SUCCESS TOGETHER"</strong> – Chúng tôi chỉ thành công khi giúp khách hàng thương hiệu phát triển bền vững và tối ưu hóa lợi nhuận.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check text-brand-lime"></i>
+                            <span class="text-sm font-semibold text-slate-700">Cam kết giao hàng đúng tiến độ giao hẹn 100%</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check text-brand-lime"></i>
+                            <span class="text-sm font-semibold text-slate-700">Quy trình kiểm tra chất lượng QC nghiêm ngặt đầu vào-ra</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-circle-check text-brand-lime"></i>
+                            <span class="text-sm font-semibold text-slate-700">Không sử dụng nguyên vật liệu độc hại, thân thiện môi trường</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="bg-brand-light p-6 rounded-2xl border border-slate-100">
+                        <h4 class="font-bold text-lg text-brand-cyan mb-2"><i class="fa-solid fa-gem mr-2"></i> Uy Tín Thương Hiệu</h4>
+                        <p class="text-slate-600 text-xs sm:text-sm">Xây dựng vị thế vững vàng nhờ thực thi chính xác cam kết về chất lượng may mặc xuất khẩu.</p>
+                    </div>
+                    <div class="bg-brand-light p-6 rounded-2xl border border-slate-100">
+                        <h4 class="font-bold text-lg text-brand-limeHover mb-2"><i class="fa-solid fa-coins mr-2"></i> Chi Phí Tối Ưu</h4>
+                        <p class="text-slate-600 text-xs sm:text-sm">Giá cả cạnh tranh nhờ tự động hóa cao và quản lý chặt chẽ hao hụt nguyên liệu.</p>
+                    </div>
+                    <div class="bg-brand-light p-6 rounded-2xl border border-slate-100">
+                        <h4 class="font-bold text-lg text-blue-600 mb-2"><i class="fa-solid fa-truck-fast mr-2"></i> Linh Hoạt Tiến Độ</h4>
+                        <p class="text-slate-600 text-xs sm:text-sm">Đầy đủ năng lực triển khai đơn hàng gấp, quy mô lớn nhờ vận hành 6 chuyền liên tục.</p>
+                    </div>
+                    <div class="bg-brand-light p-6 rounded-2xl border border-slate-100">
+                        <h4 class="font-bold text-lg text-indigo-600 mb-2"><i class="fa-solid fa-thumbs-up mr-2"></i> Dịch Vụ Chu Đáo</h4>
+                        <p class="text-slate-600 text-xs sm:text-sm">May mẫu chuẩn xác trước sản xuất hàng loạt, tư vấn tối ưu chất liệu phù hợp phân khúc.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- REAL PRODUCTS GALLERY -->
+<section id="products" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center space-y-4 mb-16">
+            <h2 class="text-xs uppercase font-extrabold tracking-widest text-brand-cyan">Sản Phẩm Denim / Jeans Thực Tế</h2>
+            <p class="text-3xl sm:text-4xl font-extrabold text-slate-900">Chi Tiết Đường May & Chất Liệu Hoàn Thiện</p>
+            <div class="w-16 h-1 bg-brand-lime mx-auto rounded-full"></div>
+            <p class="text-slate-600 max-w-2xl mx-auto text-sm sm:text-base">
+                Hình ảnh thực tế các dòng sản phẩm quần Jeans dài, quần Shorts chất lượng cao được sản xuất trực tiếp tại xưởng may WINWIN SEWING xuất khẩu đi các thị trường Nhật Bản, Mỹ và Châu Âu.
+            </p>
+        </div>
+
+        <!-- Grid of Real Provided Product Images with dynamically bindable image targets -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Denim 1 -->
+            <div class="bg-brand-light rounded-2xl overflow-hidden border border-slate-100 hover:shadow-premium transition-all duration-300 group">
+                <div class="relative overflow-hidden aspect-[3/4] bg-slate-150">
+                    <img id="img-prod-1" src="../images/fdf.jpg" onerror="this.src='../images/.jpg'; this.onerror=null;" alt="Quần Jeans Ống Loe Sáng Màu" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <span class="absolute top-4 left-4 bg-brand-cyan text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">Premium Denim</span>
+                </div>
+                <div class="p-5 space-y-2">
+                    <h3 class="font-bold text-slate-900 text-base">Quần Jeans Nữ Ống Loe Thời Trang</h3>
+                    <p class="text-slate-500 text-xs">Mã mẫu: WW-JN-FL01 • Vải Cotton Denim co giãn</p>
+                    <div class="flex justify-between items-center pt-3 border-t border-slate-200">
+                        <span class="text-xs text-brand-lime font-bold uppercase"><i class="fa-regular fa-circle-check"></i> Đạt chuẩn xuất khẩu</span>
+                        <span class="text-xs text-slate-400 font-semibold">Công nghệ mài wash nhẹ</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Denim 2 -->
+            <div class="bg-brand-light rounded-2xl overflow-hidden border border-slate-100 hover:shadow-premium transition-all duration-300 group">
+                <div class="relative overflow-hidden aspect-[3/4] bg-slate-150">
+                    <img id="img-prod-2" src="z7256412728662_1f86c38f3d73dce89b99c8918f575168.jpg" onerror="this.src='z7256412728662_1f86c38f3d73dce89b99c8918f575168.jpg'; this.onerror=null;" alt="Quần Jeans Ống Rộng Sáng Màu" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <span class="absolute top-4 left-4 bg-brand-cyan text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">Loose Fit</span>
+                </div>
+                <div class="p-5 space-y-2">
+                    <h3 class="font-bold text-slate-900 text-base">Quần Jeans Nữ Ống Rộng Retro</h3>
+                    <p class="text-slate-500 text-xs">Mã mẫu: WW-JN-WL02 • Vải bò mềm 100% Cotton</p>
+                    <div class="flex justify-between items-center pt-3 border-t border-slate-200">
+                        <span class="text-xs text-brand-lime font-bold uppercase"><i class="fa-regular fa-circle-check"></i> Form dáng chuẩn Nhật</span>
+                        <span class="text-xs text-slate-400 font-semibold">Tạo form hông tự nhiên</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Denim 3 -->
+            <div class="bg-brand-light rounded-2xl overflow-hidden border border-slate-100 hover:shadow-premium transition-all duration-300 group">
+                <div class="relative overflow-hidden aspect-[3/4] bg-slate-150">
+                    <img id="img-prod-3" src="z7256412735331_764349c13f1cecc2e64a52da2b25400e.jpg" onerror="this.src='z7256412735331_764349c13f1cecc2e64a52da2b25400e.jpg'; this.onerror=null;" alt="Quần Jeans Xanh Indigo Cổ Điển" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <span class="absolute top-4 left-4 bg-brand-cyan text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">Indigo Blue</span>
+                </div>
+                <div class="p-5 space-y-2">
+                    <h3 class="font-bold text-slate-900 text-base">Quần Jeans Nữ Xanh Indigo Sậm</h3>
+                    <p class="text-slate-500 text-xs">Mã mẫu: WW-JN-CL03 • Khóa nút đồng dập nổi</p>
+                    <div class="flex justify-between items-center pt-3 border-t border-slate-200">
+                        <span class="text-xs text-brand-lime font-bold uppercase"><i class="fa-regular fa-circle-check"></i> Sợi dệt dầy chống xù</span>
+                        <span class="text-xs text-slate-400 font-semibold">Độ bền màu cấp độ 4</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Denim 4 -->
+            <div class="bg-brand-light rounded-2xl overflow-hidden border border-slate-100 hover:shadow-premium transition-all duration-300 group">
+                <div class="relative overflow-hidden aspect-[3/4] bg-slate-150">
+                    <img id="img-prod-4" src="z7256412740511_029d6f60d4b23a68b6a6c2747d86fb84.jpg" onerror="this.src='z7256412740511_029d6f60d4b23a68b6a6c2747d86fb84.jpg'; this.onerror=null;" alt="Quần Short Jeans Nữ Mom Short" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <span class="absolute top-4 left-4 bg-brand-cyan text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">Mom Shorts</span>
+                </div>
+                <div class="p-5 space-y-2">
+                    <h3 class="font-bold text-slate-900 text-base">Quần Short Bò Nữ Cạp Cao (Size 4)</h3>
+                    <p class="text-slate-500 text-xs">Mã mẫu: WW-SH-M04 • Đường chỉ may móc xích chắc chắn</p>
+                    <div class="flex justify-between items-center pt-3 border-t border-slate-200">
+                        <span class="text-xs text-brand-lime font-bold uppercase"><i class="fa-regular fa-circle-check"></i> Tiêu chuẩn Mỹ (US)</span>
+                        <span class="text-xs text-slate-400 font-semibold">Wax cơ bản nhẹ nhàng</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Denim 5 -->
+            <div class="bg-brand-light rounded-2xl overflow-hidden border border-slate-100 hover:shadow-premium transition-all duration-300 group">
+                <div class="relative overflow-hidden aspect-[3/4] bg-slate-150">
+                    <img id="img-prod-5" src="z7256412756862_863989b8467f9b495da42f8474d9294a.jpg" onerror="this.src='z7256412756862_863989b8467f9b495da42f8474d9294a.jpg'; this.onerror=null;" alt="Quần Short Bò Nữ Mom Short Size 8" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <span class="absolute top-4 left-4 bg-brand-cyan text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">Mom Shorts Size 8</span>
+                </div>
+                <div class="p-5 space-y-2">
+                    <h3 class="font-bold text-slate-900 text-base">Quần Short Bò Nữ Cạp Cao (Size 8)</h3>
+                    <p class="text-slate-500 text-xs">Mã mẫu: WW-SH-M08 • Đường mài nhẹ dằn túi bền bỉ</p>
+                    <div class="flex justify-between items-center pt-3 border-t border-slate-200">
+                        <span class="text-xs text-brand-lime font-bold uppercase"><i class="fa-regular fa-circle-check"></i> Tiêu chuẩn Mỹ (US)</span>
+                        <span class="text-xs text-slate-400 font-semibold">Màu xanh Indigo cổ điển</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Denim 6 -->
+            <div class="bg-brand-light rounded-2xl overflow-hidden border border-slate-100 hover:shadow-premium transition-all duration-300 group">
+                <div class="relative overflow-hidden aspect-[3/4] bg-slate-150">
+                    <img id="img-prod-6" src="z7256412772793_4cccf504356bed0d2fe6e545541547f8.jpg" onerror="this.src='z7256412772793_4cccf504356bed0d2fe6e545541547f8.jpg'; this.onerror=null;" alt="Quần Short Jeans Cào Rách" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <span class="absolute top-4 left-4 bg-brand-cyan text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">Distressed</span>
+                </div>
+                <div class="p-5 space-y-2">
+                    <h3 class="font-bold text-slate-900 text-base">Quần Short Bò Nữ Cào Rách Cá Tính</h3>
+                    <p class="text-slate-500 text-xs">Mã mẫu: WW-SH-D05 • Lai cắt tua rua phong cách tự nhiên</p>
+                    <div class="flex justify-between items-center pt-3 border-t border-slate-200">
+                        <span class="text-xs text-brand-lime font-bold uppercase"><i class="fa-regular fa-circle-check"></i> Đường may dằn túi đôi</span>
+                        <span class="text-xs text-slate-400 font-semibold">Tạo xước thủ công tỉ mỉ</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Extra Denim Showcase (Comparison Layouts with Google Drive source binding) -->
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-brand-light p-6 rounded-2xl border border-slate-100 flex flex-col md:flex-row items-center gap-6">
+                <div class="w-full md:w-1/2 aspect-square rounded-xl overflow-hidden bg-white shadow-sm shrink-0">
+                    <img id="img-extra-1" src="z7256412785099_e349d1e3765f093550e3e2231777cf9c.jpg" onerror="this.src='z7256412785099_e349d1e3765f093550e3e2231777cf9c.jpg'; this.onerror=null;" alt="Contrast Shorts Pair" class="w-full h-full object-cover">
+                </div>
+                <div class="space-y-3">
+                    <span class="text-[10px] uppercase font-extrabold tracking-wider bg-brand-cyan/10 text-brand-cyan px-2.5 py-1 rounded-md">Dòng Sản Phẩm Xuất Mỹ</span>
+                    <h4 class="font-extrabold text-slate-900 text-lg">Phối Hợp Tone Màu Đậm - Sáng</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Khả năng dệt nhuộm và kiểm soát sai lệch màu cực tốt giữa các lô vải. Đảm bảo 100% sản phẩm đầu ra đồng đều sắc độ, đáp ứng tiêu chuẩn khắt khe từ các đại siêu thị.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-brand-light p-6 rounded-2xl border border-slate-100 flex flex-col md:flex-row items-center gap-6">
+                <div class="w-full md:w-1/2 aspect-square rounded-xl overflow-hidden bg-white shadow-sm shrink-0">
+                    <img id="img-extra-2" src="z7256412794328_b4735413a468a4450c96932dae433fd2.jpg" onerror="this.src='z7256412794328_b4735413a468a4450c96932dae433fd2.jpg'; this.onerror=null;" alt="Raw Hem Shorts Detail" class="w-full h-full object-cover">
+                </div>
+                <div class="space-y-3">
+                    <span class="text-[10px] uppercase font-extrabold tracking-wider bg-brand-lime/20 text-brand-limeHover px-2.5 py-1 rounded-md">Kỹ Thuật Cào Xước Rách</span>
+                    <h4 class="font-extrabold text-slate-900 text-lg">Xử Lý Wash & Sờn Sợi Chuyên Sâu</h4>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Sử dụng dây chuyền giặt mài sinh thái không gây ô nhiễm, tạo các vệt sờn tự nhiên, mềm mại không làm suy yếu kết cấu chịu lực của sợi dệt bò nguyên bản.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- SHOWROOM MÁY MÓC TƯƠNG TÁC -->
+<section id="showroom" class="py-20 bg-brand-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center space-y-4 mb-16">
+            <h2 class="text-xs uppercase font-extrabold tracking-widest text-brand-cyan">Hệ thống sản xuất hiện đại</h2>
+            <p class="text-3xl font-extrabold text-slate-900">Danh Mục Thiết Bị Chuyên Dụng Tự Động</p>
+            <div class="w-16 h-1 bg-brand-lime mx-auto rounded-full"></div>
+            <p class="text-slate-600 max-w-2xl mx-auto text-sm">
+                Chúng tôi sở hữu dàn máy móc công nghiệp tiên tiến thế hệ mới giúp tăng tốc độ gia công quần Jeans, áo khoác Jacket một cách chuẩn xác nhất. Hãy click các tab để xem nhóm máy chuyên nghiệp.
+            </p>
+        </div>
+
+        <!-- Interactive Machinery Filter/Tabs -->
+        <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-12">
+            <button onclick="filterMachinery('all')" class="machinery-tab-btn px-6 py-2.5 rounded-full text-sm font-bold transition-all bg-brand-cyan text-white active" id="btn-all">
+                Tất cả thiết bị
+            </button>
+            <button onclick="filterMachinery('cat')" class="machinery-tab-btn px-6 py-2.5 rounded-full text-sm font-semibold transition-all bg-white text-slate-600 hover:bg-slate-100 border border-slate-200" id="btn-cat">
+                Thiết kế & Cắt rập
+            </button>
+            <button onclick="filterMachinery('may')" class="machinery-tab-btn px-6 py-2.5 rounded-full text-sm font-semibold transition-all bg-white text-slate-600 hover:bg-slate-100 border border-slate-200" id="btn-may">
+                Máy may Jeans tự động
+            </button>
+            <button onclick="filterMachinery('hoanthien')" class="machinery-tab-btn px-6 py-2.5 rounded-full text-sm font-semibold transition-all bg-white text-slate-600 hover:bg-slate-100 border border-slate-200" id="btn-hoanthien">
+                Đóng nút & Hoàn thiện
+            </button>
+        </div>
+
+        <!-- Machinery Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="machineryGrid">
+            
+            <!-- Machine 1 -->
+            <div class="machinery-item bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-premium transition-all duration-300" data-category="cat">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="px-3 py-1 bg-brand-cyan/10 text-brand-cyan text-xs font-bold rounded-md">Thiết kế rập</span>
+                    <i class="fa-solid fa-microchip text-slate-400 text-lg"></i>
+                </div>
+                <h3 class="font-bold text-slate-900 text-lg mb-2">Máy in sơ đồ khổ lớn</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Được sử dụng rộng rãi để in các bản vẽ rập kỹ thuật chuẩn hóa từ phần mềm CAD lên giấy chuyên dụng, tiết kiệm thời gian cắt mẫu, tối ưu hóa sơ đồ hao hụt vải.
+                </p>
+                <div class="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center text-xs font-semibold text-slate-400">
+                    <span>Mục tiêu: Chống hao hụt vải</span>
+                    <span class="text-brand-lime font-bold">Chính xác 100%</span>
+                </div>
+            </div>
+
+            <!-- Machine 2 -->
+            <div class="machinery-item bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-premium transition-all duration-300" data-category="cat">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="px-3 py-1 bg-brand-cyan/10 text-brand-cyan text-xs font-bold rounded-md">Trải vải</span>
+                    <i class="fa-solid fa-arrows-left-right text-slate-400 text-lg"></i>
+                </div>
+                <h3 class="font-bold text-slate-900 text-lg mb-2">Máy trải vải công nghiệp</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Xả cuộn vải và xếp phẳng đều liên tục tăm tắp, chuẩn bị cho công đoạn cắt rập rập chồng nhiều lớp siêu mượt mà cho các đơn hàng dệt bò Jeans khối lượng lớn.
+                </p>
+                <div class="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center text-xs font-semibold text-slate-400">
+                    <span>Mục tiêu: Đẩy nhanh tiến độ</span>
+                    <span class="text-brand-lime font-bold">Hiệu suất cao</span>
+                </div>
+            </div>
+
+            <!-- Machine 3 -->
+            <div class="machinery-item bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-premium transition-all duration-300" data-category="may">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="px-3 py-1 bg-brand-lime/20 text-brand-limeHover text-xs font-bold rounded-md">May Chuyên Dụng</span>
+                    <i class="fa-solid fa-wand-magic-sparkles text-slate-400 text-lg"></i>
+                </div>
+                <h3 class="font-bold text-slate-900 text-lg mb-2">Máy may ổ đĩa Jeans tự động</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Tích hợp quy trình may tự động: gập mép vải bò cực dầy, định vị đầu chỉ, cắt tự động và thắt nút thắt chặt chỉ trong một thao tác khép kín chuẩn xác.
+                </p>
+                <div class="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center text-xs font-semibold text-slate-400">
+                    <span>Mục tiêu: Tối ưu nhân sự</span>
+                    <span class="text-brand-cyan font-bold">Tự động hóa</span>
+                </div>
+            </div>
+
+            <!-- Machine 4 -->
+            <div class="machinery-item bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-premium transition-all duration-300" data-category="may">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="px-3 py-1 bg-brand-lime/20 text-brand-limeHover text-xs font-bold rounded-md">Chịu Lực Cao</span>
+                    <i class="fa-solid fa-ellipsis-vertical text-slate-400 text-lg"></i>
+                </div>
+                <h3 class="font-bold text-slate-900 text-lg mb-2">Máy may móc xích 3 kim</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Tạo ra 3 đường chỉ song song chắc khỏe phi thường, chuyên may sườn hông và đáy quần Jeans dày, đảm bảo đường may co giãn mạnh không bục chỉ.
+                </p>
+                <div class="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center text-xs font-semibold text-slate-400">
+                    <span>Ứng dụng: May gân quần Jeans</span>
+                    <span class="text-brand-cyan font-bold">Chuẩn xuất khẩu</span>
+                </div>
+            </div>
+
+            <!-- Machine 5 -->
+            <div class="machinery-item bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-premium transition-all duration-300" data-category="hoanthien">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-xs font-bold rounded-md">Dập Nút Đồng</span>
+                    <i class="fa-solid fa-circle text-slate-400 text-lg"></i>
+                </div>
+                <h3 class="font-bold text-slate-900 text-lg mb-2">Máy đính nút rivet điện tử</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Đính khuy khóa, đóng các nút đồng ghim sườn, nút bấm kim loại cố định cực kỳ chắc chắn vào thân quần Jeans, không lo lỏng lẻo hay rơi rụng khi giặt mài.
+                </p>
+                <div class="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center text-xs font-semibold text-slate-400">
+                    <span>Dành cho: Phụ kiện kim loại</span>
+                    <span class="text-brand-lime font-bold">Khóa chốt an toàn</span>
+                </div>
+            </div>
+
+            <!-- Machine 6 -->
+            <div class="machinery-item bg-white p-6 rounded-2xl shadow-sm border border-slate-100 hover:shadow-premium transition-all duration-300" data-category="hoanthien">
+                <div class="flex justify-between items-start mb-4">
+                    <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-xs font-bold rounded-md">Ép Nhãn Mác</span>
+                    <i class="fa-solid fa-temperature-high text-slate-400 text-lg"></i>
+                </div>
+                <h3 class="font-bold text-slate-900 text-lg mb-2">Máy ép keo khổ rộng 600mm</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Máy ép nhiệt định hình, liên kết nhãn da lưng quần Jeans, ép keo nhãn mác áo khoác phẳng lỳ nhờ áp suất nhiệt tự động cân bằng điện tử.
+                </p>
+                <div class="mt-4 pt-4 border-t border-slate-100 flex justify-between items-center text-xs font-semibold text-slate-400">
+                    <span>Ứng dụng: Dán mác da lưng</span>
+                    <span class="text-brand-lime font-bold">Định phom chuẩn nét</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- 4. HOW IT WORKS (Quy trình sản xuất chuyên nghiệp) -->
+<section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center space-y-4 mb-16">
+            <h2 class="text-xs uppercase font-extrabold tracking-widest text-brand-cyan">Sự minh bạch tạo niềm tin</h2>
+            <p class="text-3xl font-extrabold text-slate-900">Quy Trình Phối Hợp & Giao Nhận Trơn Tru</p>
+            <div class="w-16 h-1 bg-brand-lime mx-auto rounded-full"></div>
+            <p class="text-slate-600 max-w-2xl mx-auto text-sm">
+                Chúng tôi áp dụng mô hình vận hành minh bạch 5 bước từ lúc tiếp nhận đến đóng gói kho xuất khẩu nhằm đảm bảo quyền lợi tối ưu cho các thương hiệu.
+            </p>
+        </div>
+
+        <!-- 5-Step Process Timeline with Packing Image -->
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-8 relative mb-16">
+            <!-- Connecting line for desktop layout -->
+            <div class="hidden md:block absolute top-12 left-[10%] right-[10%] h-0.5 bg-slate-200 z-0"></div>
+
+            <!-- Step 1 -->
+            <div class="space-y-4 text-center relative z-10 bg-white p-4 rounded-xl">
+                <div class="w-16 h-16 rounded-2xl bg-brand-cyan text-white font-extrabold text-xl flex items-center justify-center mx-auto shadow-md">
+                    01
+                </div>
+                <h3 class="font-bold text-slate-900 text-base">Tư Vấn & Lên Rập</h3>
+                <p class="text-slate-500 text-xs sm:text-sm leading-relaxed">
+                    Khảo sát nhu cầu chất liệu dệt, định hình phom dáng quần Jeans, áo khoác rập theo xu hướng thời trang.
+                </p>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="space-y-4 text-center relative z-10 bg-white p-4 rounded-xl">
+                <div class="w-16 h-16 rounded-2xl bg-slate-800 text-brand-lime font-extrabold text-xl flex items-center justify-center mx-auto shadow-md">
+                    02
+                </div>
+                <h3 class="font-bold text-slate-900 text-base">May Mẫu Gửi Duyệt</h3>
+                <p class="text-slate-500 text-xs sm:text-sm leading-relaxed">
+                    Phát triển rập và may mẫu thật (Gold Sample) gửi đối tác đánh giá trực tiếp đường chỉ, sắc độ màu sắc wash rách.
+                </p>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="space-y-4 text-center relative z-10 bg-white p-4 rounded-xl">
+                <div class="w-16 h-16 rounded-2xl bg-slate-800 text-brand-cyan font-extrabold text-xl flex items-center justify-center mx-auto shadow-md">
+                    03
+                </div>
+                <h3 class="font-bold text-slate-900 text-base">Ký Kết Hợp Đồng</h3>
+                <p class="text-slate-500 text-xs sm:text-sm leading-relaxed">
+                    Thống nhất bộ tài liệu kỹ thuật, đơn giá gia công, tiến độ giao hàng chi tiết và đặt cọc bảo đảm.
+                </p>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="space-y-4 text-center relative z-10 bg-white p-4 rounded-xl">
+                <div class="w-16 h-16 rounded-2xl bg-slate-800 text-yellow-500 font-extrabold text-xl flex items-center justify-center mx-auto shadow-md">
+                    04
+                </div>
+                <h3 class="font-bold text-slate-900 text-base">Sản Xuất Hàng Loạt</h3>
+                <p class="text-slate-500 text-xs sm:text-sm leading-relaxed">
+                    Vận hành 6 chuyền may liên tục. Đội ngũ kiểm soát chất lượng QC độc lập kiểm soát chất lượng 100% các công đoạn.
+                </p>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="space-y-4 text-center relative z-10 bg-white p-4 rounded-xl">
+                <div class="w-16 h-16 rounded-2xl bg-brand-lime text-slate-900 font-extrabold text-xl flex items-center justify-center mx-auto shadow-md">
+                    05
+                </div>
+                <h3 class="font-bold text-slate-900 text-base">Đóng Gói & Xuất Kho</h3>
+                <p class="text-slate-500 text-xs sm:text-sm leading-relaxed">
+                    Đóng gói thùng carton theo tiêu chuẩn hàng tàu biển quốc tế và hỗ trợ thông quan xuất kho bãi cho quý đối tác.
+                </p>
+            </div>
+        </div>
+
+        <!-- Integrated Warehouse Packing Image showing Delivery Capability -->
+        <div class="bg-brand-light rounded-3xl p-6 md:p-10 border border-slate-100 shadow-premium flex flex-col lg:flex-row items-center gap-10">
+            <div class="w-full lg:w-1/2 aspect-[4/3] rounded-2xl overflow-hidden shadow-md bg-slate-150">
+                <img id="img-packing-img" src="z7256412839215_b09538d569bb12379884f9cb160a55b0.jpg" onerror="this.src='z7256412839215_b09538d569bb12379884f9cb160a55b0.jpg'; this.onerror=null;" alt="Thùng hàng đóng gói sẵn sàng xuất khẩu" class="w-full h-full object-cover hover:scale-102 transition-all duration-500">
+            </div>
+            <div class="lg:col-span-6 space-y-4 text-left">
+                <span class="text-xs uppercase font-extrabold tracking-widest text-brand-cyan"><i class="fa-solid fa-cubes"></i> Đảm Bảo Quy Chuẩn Đóng Thùng B2B</span>
+                <h4 class="text-2xl font-bold text-slate-900 leading-tight">Quy Quy Khâu Đóng Gói Và Xếp Pallet Xuất Khẩu</h4>
+                <p class="text-sm text-slate-600 leading-relaxed">
+                    Toàn bộ đơn hàng sau khi vượt qua vòng kiểm thử độ bền sợi dệt và đường may sẽ được đưa vào khu vực đóng gói đạt chuẩn vệ sinh. Sản phẩm Jeans được xếp gọn vào túi chống ẩm, dán nhãn chuẩn hóa barcode và đóng chặt trong các thùng carton chuyên dụng dày 5-7 lớp.
+                </p>
+                <div class="p-4 bg-white rounded-xl border border-slate-200/50 inline-flex items-center gap-3">
+                    <i class="fa-solid fa-circle-check text-brand-lime text-xl"></i>
+                    <span class="text-xs font-bold text-slate-800">Ảnh thực tế lô hàng chuẩn bị vận chuyển xếp Pallet xuất khẩu tại kho WINWIN SEWING.</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- 5. INTERACTIVE B2B PRICING & CALCULATION -->
+<section id="calculator" class="py-20 bg-slate-900 text-white relative">
+    <div class="absolute inset-0 bg-slate-950/20 mix-blend-multiply pointer-events-none"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Left Side: Pricing Hook & Description -->
+            <div class="lg:col-span-5 space-y-6">
+                <span class="text-brand-lime text-xs font-extrabold uppercase tracking-widest"><i class="fa-solid fa-hand-holding-dollar"></i> Công cụ định giá tối ưu</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold leading-tight">Dự Toán Ngân Sách Sản Xuất Trực Tuyến</h2>
+                <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                    Hệ thống định giá của WINWIN được tối ưu chiết khấu giảm giá mạnh khi số lượng đơn hàng đạt mốc quy mô dệt chuyền lớn. Kéo chọn cấu hình dưới đây để biết đơn giá gia công ước lượng.
+                </p>
+                
+                <div class="space-y-4 pt-4 border-t border-slate-800">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-brand-cyan">
+                            <i class="fa-solid fa-boxes-packing text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm">Hỗ trợ may thử lô nhỏ (MOQ linh hoạt)</h4>
+                            <p class="text-xs text-slate-400">Giúp các Local Brand bắt đầu với mốc số lượng vừa túi tiền.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-lg bg-slate-800 flex items-center justify-center text-brand-lime">
+                            <i class="fa-solid fa-tag text-lg"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm">Chiết khấu dồn đơn hàng quý/năm</h4>
+                            <p class="text-xs text-slate-400">Ưu đãi giảm thêm đến 20% đơn giá gia công khi ký kết bao tiêu năm.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Side: Interactive Calculator Widget -->
+            <div class="lg:col-span-7">
+                <div class="bg-slate-800 rounded-3xl p-6 sm:p-8 border border-slate-700 shadow-2xl space-y-6">
+                    <h3 class="text-lg font-bold text-slate-100 flex items-center gap-2">
+                        <i class="fa-solid fa-sliders text-brand-cyan"></i> Chọn cấu hình đơn hàng dự toán của bạn
+                    </h3>
+                    
+                    <div class="space-y-4">
+                        <!-- Select Product Type -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">1. Chọn loại dòng sản phẩm cần may</label>
+                            <select id="prodType" onchange="calculateOrder()" class="w-full bg-slate-700 border border-slate-600 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-brand-cyan">
+                                <option value="jeans" selected>Quần Jeans Bò Chuyên Dụng (Mũi nhọn WinWin)</option>
+                                <option value="shirt">Sơ Mi Cao Cấp / Đồng Phục Công Sở</option>
+                                <option value="jacket">Áo Khoác Jacket Kỹ Thuật Nhiều Chi Tiết</option>
+                                <option value="tshirt">Áo Thun Thời Trang Cotton</option>
+                            </select>
+                        </div>
+
+                        <!-- Select Quality / Standard -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">2. Tiêu chuẩn chất lượng yêu cầu</label>
+                            <select id="qualityStd" onchange="calculateOrder()" class="w-full bg-slate-700 border border-slate-600 rounded-xl px-4 py-3 text-sm text-slate-100 focus:outline-none focus:border-brand-cyan">
+                                <option value="export" selected>Chuẩn xuất khẩu cao cấp WRAP Gold (Đạt chuẩn US/EU/Nhật)</option>
+                                <option value="standard">Chuẩn nội địa tốt (Vải dệt Kaki/Cotton ổn định)</option>
+                            </select>
+                        </div>
+
+                        <!-- Input Quantity Range -->
+                        <div>
+                            <div class="flex justify-between text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
+                                <span>3. Quy mô số lượng (Chiếc / Sản phẩm)</span>
+                                <span class="text-brand-lime font-bold" id="qtyDisplay">2,000 chiếc</span>
+                            </div>
+                            <input type="range" id="orderQty" min="100" max="10000" step="100" value="2000" oninput="updateQtyVal()" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-brand-lime">
+                            <div class="flex justify-between text-[10px] text-slate-500 mt-1">
+                                <span>100 chiếc (May thử mẫu)</span>
+                                <span>5,000 chiếc (Hàng loạt)</span>
+                                <span>10,000+ chiếc (Quy mô chuyền dồn)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Output Dynamic Result Card -->
+                    <div class="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs text-slate-400">Đơn giá gia công tham chiếu:</span>
+                            <span class="text-xl font-bold text-brand-lime" id="pricePerUnit">120,000 VND / SP</span>
+                        </div>
+                        <div class="flex justify-between items-center border-t border-slate-800 pt-3">
+                            <span class="text-sm text-slate-200 font-bold">Tổng chi phí dự toán dự kiến:</span>
+                            <span class="text-2xl font-extrabold text-brand-cyan" id="totalPrice">240,000,000 VND</span>
+                        </div>
+                        <p class="text-[10px] text-slate-500 italic leading-relaxed">
+                            * Lưu ý: Mức giá trên mang tính chất dự toán tham khảo dựa trên quy chuẩn may mặc thông dụng. Để có bảng báo giá trọn gói FOB/FPP chi tiết bao gồm nguyên phụ liệu, vui lòng click đăng ký nhận báo giá chính thức ngay bên dưới.
+                        </p>
+                    </div>
+
+                    <a href="#cta" onclick="fillCalculatorDataToForm()" class="block text-center w-full py-4 gradient-bg text-slate-900 hover:brightness-105 font-extrabold text-sm uppercase tracking-wider rounded-xl shadow-glow transition-all">
+                        Liên kết cấu hình giá & Đăng Ký May Mẫu Thử <i class="fa-solid fa-arrow-right ml-1"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- 6. FAQs (Phá vỡ rào cản tâm lý mua hàng B2B) -->
+<section id="faq" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center space-y-4 mb-16">
+            <h2 class="text-xs uppercase font-extrabold tracking-widest text-brand-cyan">Giải đáp khúc mắc khách hàng</h2>
+            <p class="text-3xl font-extrabold text-slate-900">Những Câu Hỏi Đối Tác Thường Quan Tâm</p>
+            <div class="w-16 h-1 bg-brand-lime mx-auto rounded-full"></div>
+            <p class="text-slate-600 max-w-2xl mx-auto text-sm">
+                Chúng tôi hiểu khách hàng B2B luôn có các tiêu chí chọn lựa khắt khe. Dưới đây là những câu trả lời thẳng thắn nhất từ hội đồng quản trị WINWIN SEWING.
+            </p>
+        </div>
+
+        <!-- Accordion FAQ system -->
+        <div class="max-w-3xl mx-auto space-y-4">
+            
+            <!-- Accordion 1 -->
+            <div class="border border-slate-200 rounded-2xl overflow-hidden transition-all duration-300">
+                <button onclick="toggleAccordion(1)" class="w-full flex justify-between items-center p-6 bg-brand-light hover:bg-slate-50 text-left transition-colors">
+                    <span class="font-bold text-slate-900 text-sm sm:text-base">1. Số lượng đặt hàng tối thiểu (MOQ) tại xưởng là bao nhiêu?</span>
+                    <i id="faq-icon-1" class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                </button>
+                <div id="faq-content-1" class="hidden p-6 bg-white border-t border-slate-200 text-slate-600 text-xs sm:text-sm leading-relaxed space-y-2">
+                    <p>Số lượng đặt may linh hoạt phụ thuộc vào từng loại phân khúc sản phẩm:</p>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li>Đối với áo thun, đồng phục cơ bản: Từ 150 sản phẩm/màu.</li>
+                        <li>Đối với quần Jeans bò chuyên dụng, áo khoác Jacket rập phức tạp: Từ 300 sản phẩm/mẫu.</li>
+                    </ul>
+                    <p>Chúng tôi ưu tiên hỗ trợ may thử nghiệm các lô hàng nhỏ cho các Local Brand định hướng đi lên xuất khẩu.</p>
+                </div>
+            </div>
+
+            <!-- Accordion 2 -->
+            <div class="border border-slate-200 rounded-2xl overflow-hidden transition-all duration-300">
+                <button onclick="toggleAccordion(2)" class="w-full flex justify-between items-center p-6 bg-brand-light hover:bg-slate-50 text-left transition-colors">
+                    <span class="font-bold text-slate-900 text-sm sm:text-base">2. WINWIN có hỗ trợ may mẫu thử nghiệm (Sampling) trước không?</span>
+                    <i id="faq-icon-2" class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                </button>
+                <div id="faq-content-2" class="hidden p-6 bg-white border-t border-slate-200 text-slate-600 text-xs sm:text-sm leading-relaxed">
+                    Có, đây là một phần quan trọng trong quy trình chuẩn của chúng tôi. WINWIN hỗ trợ tư vấn thiết kế rập mẫu nhanh và may mẫu thật gửi khách hàng kiểm tra phom dáng, đường chỉ (trong vòng 3-5 ngày làm việc). Chi phí phát triển mẫu sẽ được hoàn trả 100% khi ký kết hợp đồng sản xuất chính thức.
+                </div>
+            </div>
+
+            <!-- Accordion 3 -->
+            <div class="border border-slate-200 rounded-2xl overflow-hidden transition-all duration-300">
+                <button onclick="toggleAccordion(3)" class="w-full flex justify-between items-center p-6 bg-brand-light hover:bg-slate-50 text-left transition-colors">
+                    <span class="font-bold text-slate-900 text-sm sm:text-base">3. Chứng nhận WRAP Gold mang lại những lợi ích gì cho đơn hàng dệt may xuất khẩu?</span>
+                    <i id="faq-icon-3" class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                </button>
+                <div id="faq-content-3" class="hidden p-6 bg-white border-t border-slate-200 text-slate-600 text-xs sm:text-sm leading-relaxed">
+                    Chứng nhận WRAP Gold bảo chứng rằng nhà máy của chúng tôi tuân thủ các quy tắc sản xuất an toàn, hợp đạo đức, không vi phạm luật lao động, đảm bảo môi trường sạch sẽ và phúc lợi nhân viên tốt. Đây là "tấm vé thông hành" bắt buộc giúp hàng hóa may mặc dễ dàng thông quan và được chấp nhận tại các chuỗi siêu thị lớn ở thị trường Mỹ, Châu Âu, Nhật Bản mà không lo ngại vấn đề rủi ro pháp lý xã hội.
+                </div>
+            </div>
+
+            <!-- Accordion 4 -->
+            <div class="border border-slate-200 rounded-2xl overflow-hidden transition-all duration-300">
+                <button onclick="toggleAccordion(4)" class="w-full flex justify-between items-center p-6 bg-brand-light hover:bg-slate-50 text-left transition-colors">
+                    <span class="font-bold text-slate-900 text-sm sm:text-base">4. Quy định bảo hành sản phẩm lỗi kỹ thuật và đền bù lỗi sản xuất ra sao?</span>
+                    <i id="faq-icon-4" class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+                </button>
+                <div id="faq-content-4" class="hidden p-6 bg-white border-t border-slate-200 text-slate-600 text-xs sm:text-sm leading-relaxed">
+                    Với phương châm "SUCCESS TOGETHER", WINWIN SEWING chịu 100% trách nhiệm đối với các sản phẩm gặp lỗi kỹ thuật từ khâu sản xuất (như lỗi dệt hỏng vải, bung đường chỉ sườn, sai thông số rập thỏa thuận). Chúng tôi cam kết tiến hành sửa lỗi, bù sản phẩm lỗi hoặc trừ chiết khấu trực tiếp vào hợp đồng kinh tế minh bạch cho đối tác.
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- 7. FINAL CTA & CONTACT FORM -->
+<section id="cta" class="py-20 bg-slate-900 text-white relative overflow-hidden">
+    <!-- Decorative background elements -->
+    <div class="absolute -bottom-20 -left-20 w-96 h-96 bg-brand-cyan/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -top-20 -right-20 w-96 h-96 bg-brand-lime/10 rounded-full blur-3xl pointer-events-none"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <!-- Left Grid: Trust text & Contact info from Profile PDF -->
+            <div class="lg:col-span-6 space-y-6">
+                <div class="inline-block px-4 py-1.5 bg-slate-800 text-brand-lime text-xs font-bold rounded-full uppercase tracking-wider">
+                    <i class="fa-solid fa-headset mr-2"></i> KẾT NỐI ĐẦU MỐI BAN GIÁM ĐỐC
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold leading-tight">Bạn Đã Sẵn Sàng Nâng Tầm Giá Trị Thương Hiệu May Mặc?</h2>
+                <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-light">
+                    Hãy gửi thông tin yêu cầu sơ bộ hoặc ý tưởng thiết kế của bạn. Đội ngũ kỹ sư rập rập của WINWIN SEWING sẽ liên hệ tư vấn và gửi báo giá chi tiết trong vòng 24 giờ làm việc.
+                </p>
+
+                <!-- Visual Contact Cards -->
+                <div class="space-y-4 pt-6 border-t border-slate-800">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-brand-cyan">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div>
+                            <span class="block text-xs text-slate-400">Đường dây nóng liên hệ (Hotline 24/7):</span>
+                            <a href="tel:+84912821228" class="text-base font-bold text-white hover:text-brand-lime transition-colors">+84 912 821 228</a>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-brand-lime">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <span class="block text-xs text-slate-400">Địa chỉ nhà xưởng sản xuất chính:</span>
+                            <span class="text-xs sm:text-sm text-slate-200 font-medium">Lô 41A, Khu G, KCN Đình Hương - Tây Bắc Ga (Giai đoạn 2), P. Đông Cương, TP. Thanh Hoá, Việt Nam.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Grid: Contact Form -->
+            <div class="lg:col-span-6">
+                <div class="bg-slate-800 rounded-3xl p-8 border border-slate-700 shadow-2xl space-y-6">
+                    <div class="space-y-1">
+                        <h3 class="text-lg font-bold text-slate-100">Đăng Ký Tư Vấn & Nhận May Thử Miễn Phí</h3>
+                        <p class="text-xs text-slate-400">Hãy để lại thông tin chính xác, chúng tôi bảo mật thông tin dự án tuyệt đối.</p>
+                    </div>
+
+                    <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                        <!-- Sender Name -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2" for="clientName">Họ và tên của bạn *</label>
+                            <input type="text" id="clientName" required class="w-full bg-slate-700 border border-slate-600 rounded-xl px-4 py-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-brand-lime" placeholder="Ví dụ: Nguyễn Văn A">
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- Phone -->
+                            <div>
+                                <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2" for="clientPhone">Số điện thoại / Zalo *</label>
+                                <input type="tel" id="clientPhone" required class="w-full bg-slate-700 border border-slate-600 rounded-xl px-4 py-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-brand-lime" placeholder="Ví dụ: 0912345678">
+                            </div>
+                            <!-- Email -->
+                            <div>
+                                <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2" for="clientEmail">Email của bạn</label>
+                                <input type="email" id="clientEmail" class="w-full bg-slate-700 border border-slate-600 rounded-xl px-4 py-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-brand-lime" placeholder="ten@congty.com">
+                            </div>
+                        </div>
+
+                        <!-- Configured Price Note (filled from calculator) -->
+                        <div id="calculatorFormNote" class="hidden bg-slate-900 p-3 rounded-lg border border-slate-800 text-xs text-brand-lime flex justify-between items-center">
+                            <span>Đã đính kèm cấu hình thông số dự toán tự động!</span>
+                            <button type="button" onclick="removeCalculatorData()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-circle-xmark"></i></button>
+                        </div>
+
+                        <!-- Special Request / Note -->
+                        <div>
+                            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2" for="clientNote">Mô tả tóm tắt yêu cầu (Dòng sản phẩm, số lượng, chất liệu dệt...)</label>
+                            <textarea id="clientNote" rows="3" class="w-full bg-slate-700 border border-slate-600 rounded-xl px-4 py-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-brand-lime" placeholder="Ví dụ: Tôi cần may gia công 1000 chiếc quần Shorts Jeans chất liệu dệt cotton xuất khẩu đi Nhật..."></textarea>
+                        </div>
+
+                        <!-- Submit button -->
+                        <button type="submit" class="w-full py-4 gradient-bg text-slate-900 hover:brightness-105 font-extrabold text-sm uppercase tracking-wider rounded-xl shadow-glow transition-all">
+                            Gửi yêu cầu báo giá chính thức <i class="fa-solid fa-paper-plane ml-2"></i>
+                        </button>
+                    </form>
+
+                    <!-- Success State (hidden initially) -->
+                    <div id="successMessage" class="hidden bg-slate-700 border border-brand-lime p-6 rounded-2xl text-center space-y-4">
+                        <div class="w-16 h-16 bg-brand-lime/10 text-brand-lime rounded-full flex items-center justify-center mx-auto text-3xl">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-white">Yêu cầu đã gửi thành công!</h4>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            Cảm ơn quý đối tác đã gửi yêu cầu tư vấn cho WINWIN SEWING. Đội ngũ kỹ sư rập rập của chúng tôi sẽ liên hệ phản hồi qua điện thoại/Zalo trong thời gian sớm nhất.
+                        </p>
+                        <button onclick="resetContactForm()" class="px-6 py-2 bg-slate-600 hover:bg-slate-500 rounded-xl text-xs font-semibold text-slate-100 transition-colors">
+                            Gửi thêm yêu cầu mới
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+            <div class="space-y-2">
+                <span class="block text-white font-extrabold text-lg tracking-wider">CÔNG TY CỔ PHẦN MAY WINWIN</span>
+                <span class="block text-xs uppercase text-slate-500">Mã Số Doanh Nghiệp: 2803136474 | Giám Đốc: Nguyễn Thị Vân Anh</span>
+            </div>
+            <!-- Slogan in serif italics -->
+            <p class="font-serif italic text-slate-300 text-sm md:text-right">
+                "Beautiful in every detail — Perfect in every style."
+            </p>
+        </div>
+
+        <div class="border-t border-slate-900 pt-8 grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-slate-500">
+            <p>© 2026 WINWIN SEWING JOINT STOCK COMPANY. Bảo lưu mọi quyền.</p>
+            <p class="md:text-right">Landing page được tích hợp Bộ Điều Hợp Google Drive chuẩn thông minh bởi Senior UI/UX Designer.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Configuration details of all bindable real image keys
+    const driveImageKeys = [
+        { id: 'hero-img', default: '~/../images/z7256412720281_d97760f5771c7d559275adf49d1b0220.jpg', name: 'Ảnh Bìa Hero Section (Quần Loe)' },
+        { id: 'prod-1', default: '~/../images/z7256412720281_d97760f5771c7d559275adf49d1b0220.jpg', name: 'Sản phẩm 1: Quần Jeans Ống Loe' },
+        { id: 'prod-2', default: '~/../images/z7256412728662_1f86c38f3d73dce89b99c8918f575168.jpg', name: 'Sản phẩm 2: Quần Jeans Ống Rộng' },
+        { id: 'prod-3', default: '~/../images/z7256412735331_764349c13f1cecc2e64a52da2b25400e.jpg', name: 'Sản phẩm 3: Quần Jeans Chàm Indigo' },
+        { id: 'prod-4', default: '~/../images/z7256412740511_029d6f60d4b23a68b6a6c2747d86fb84.jpg', name: 'Sản phẩm 4: Quần Short Bò Size 4' },
+        { id: 'prod-5', default: '~/../images/z7256412756862_863989b8467f9b495da42f8474d9294a.jpg', name: 'Sản phẩm 5: Quần Short Bò Size 8' },
+        { id: 'prod-6', default: '~/../images/z7256412772793_4cccf504356bed0d2fe6e545541547f8.jpg', name: 'Sản phẩm 6: Quần Short Cào Rách' },
+        { id: 'extra-1', default: '~/../images/z7256412785099_e349d1e3765f093550e3e2231777cf9c.jpg', name: 'So sánh 1: Phối Hợp Đậm - Sáng' },
+        { id: 'extra-2', default: '~/../images/z7256412794328_b4735413a468a4450c96932dae433fd2.jpg', name: 'So sánh 2: Wash & Sờn Sợi Rách' },
+        { id: 'packing-img', default: '~/../images/z7256412839215_b09538d569bb12379884f9cb160a55b0.jpg', name: 'Kho Hàng: Vận chuyển Đóng Gói' }
+    ];
+
+    // Toggle Configurator Sidebar Panel
+    function toggleConfigurator() {
+        const panel = document.getElementById('driveConfigurator');
+        if (panel.classList.contains('translate-x-full')) {
+            panel.classList.remove('translate-x-full');
+            generateConfigFields();
+        } else {
+            panel.classList.add('translate-x-full');
+        }
+    }
+
+    // Extract File ID from any Google Drive URL pattern
+    function parseGoogleDriveId(url) {
+        if (!url) return '';
+        const reg1 = /\/file\/d\/([a-zA-Z0-9_-]+)/;
+        const reg2 = /[?&]id=([a-zA-Z0-9_-]+)/;
+        const match1 = url.match(reg1);
+        const match2 = url.match(reg2);
+        if (match1 && match1[1]) return match1[1];
+        if (match2 && match2[1]) return match2[1];
+        return url.trim(); // Return input as is if it's already a clean ID
+    }
+
+    // Build the direct view-friendly URL for Google Drive Assets
+    function buildDirectDriveUrl(id) {
+        if (!id) return '';
+        // Premium Direct Content Server
+        return `https://lh3.googleusercontent.com/d/${id}`;
+    }
+
+    // Render configuration inputs dynamically
+    function generateConfigFields() {
+        const container = document.getElementById('configFields');
+        container.innerHTML = '';
+
+        driveImageKeys.forEach(item => {
+            const savedValue = localStorage.getItem(`drive-id-${item.id}`) || '';
+            const field = document.createElement('div');
+            field.className = 'space-y-1.5';
+            field.innerHTML = `
+                <div class="flex justify-between items-center text-xs">
+                    <label class="font-bold text-slate-700" for="input-${item.id}">${item.name}</label>
+                    <span class="text-[10px] ${savedValue ? 'text-brand-lime font-bold' : 'text-slate-400'}">
+                        ${savedValue ? '<i class="fa-solid fa-circle-check"></i> Đang dùng Drive' : 'Ảnh mẫu mặc định'}
+                    </span>
+                </div>
+                <input type="text" id="input-${item.id}" value="${savedValue}" 
+                    placeholder="Dán link chia sẻ hoặc ID tệp Drive vào đây..." 
+                    class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-brand-cyan">
+            `;
+            container.appendChild(field);
+        });
+    }
+
+    // Save inputs to LocalStorage & Refresh page layout
+    function saveAndApplyImages() {
+        driveImageKeys.forEach(item => {
+            const val = document.getElementById(`input-${item.id}`).value.trim();
+            const id = parseGoogleDriveId(val);
+            if (id) {
+                localStorage.setItem(`drive-id-${item.id}`, id);
+            } else {
+                localStorage.removeItem(`drive-id-${item.id}`);
+            }
+        });
+        
+        applySavedImages();
+        toggleConfigurator();
+    }
+
+    // Reset to local defaults
+    function resetToDefaults() {
+        if (confirm("Bạn có chắc chắn muốn khôi phục về toàn bộ ảnh mẫu cục bộ mặc định?")) {
+            driveImageKeys.forEach(item => {
+                localStorage.removeItem(`drive-id-${item.id}`);
+            });
+            applySavedImages();
+            generateConfigFields();
+            toggleConfigurator();
+        }
+    }
+
+    // Render image targets on load
+    function applySavedImages() {
+        driveImageKeys.forEach(item => {
+            const targetImg = document.getElementById(`img-${item.id}`);
+            if (targetImg) {
+                const savedId = localStorage.getItem(`drive-id-${item.id}`);
+                
+                // Thiết lập cơ chế tự động bắt lỗi: Nếu ảnh từ Google Drive bị lỗi 403, 
+                // khôi phục tức thời về tệp ảnh cục bộ tương ứng
+                targetImg.onerror = function() {
+                    console.warn(`[Drive Error] Không thể tải ảnh Drive cho ${item.id}. Chuyển về ảnh cục bộ.`);
+                    targetImg.src = item.default;
+                    targetImg.onerror = null; // Tránh vòng lặp vô tận
+                };
+
+                if (savedId) {
+                    targetImg.src = buildDirectDriveUrl(savedId);
+                } else {
+                    targetImg.src = item.default;
+                }
+            }
+        });
+    }
+
+    // Toggle Mobile Navigation Menu
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobileMenu');
+        const icon = document.getElementById('menuIcon');
+        if (menu.classList.contains('hidden')) {
+            menu.classList.remove('hidden');
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-xmark');
+        } else {
+            menu.classList.add('hidden');
+            icon.classList.remove('fa-xmark');
+            icon.classList.add('fa-bars');
+        }
+    }
+
+    // Machinery Showroom Filter Engine
+    function filterMachinery(category) {
+        const items = document.querySelectorAll('.machinery-item');
+        const buttons = document.querySelectorAll('.machinery-tab-btn');
+        
+        // Handle Active Button Style
+        buttons.forEach(btn => {
+            btn.classList.remove('bg-brand-cyan', 'text-white', 'active');
+            btn.classList.add('bg-white', 'text-slate-600');
+        });
+        
+        const targetBtn = document.getElementById('btn-' + category);
+        if (targetBtn) {
+            targetBtn.classList.remove('bg-white', 'text-slate-600');
+            targetBtn.classList.add('bg-brand-cyan', 'text-white', 'active');
+        }
+
+        // Show/Hide Machinery items smoothly
+        items.forEach(item => {
+            if (category === 'all' || item.getAttribute('data-category') === category) {
+                item.style.display = 'block';
+                setTimeout(() => { item.style.opacity = '1'; }, 50);
+            } else {
+                item.style.opacity = '0';
+                setTimeout(() => { item.style.display = 'none'; }, 200);
+            }
+        });
+    }
+
+    // Accordion System for FAQs
+    function toggleAccordion(id) {
+        const content = document.getElementById(`faq-content-${id}`);
+        const icon = document.getElementById(`faq-icon-${id}`);
+        
+        if (content.classList.contains('hidden')) {
+            content.classList.remove('hidden');
+            icon.classList.add('rotate-180');
+        } else {
+            content.classList.add('hidden');
+            icon.classList.remove('rotate-180');
+        }
+    }
+
+    // Interactive Cost Estimator State Logic
+    const basePrices = {
+        jeans: { standard: 95000, export: 145000 },
+        shirt: { standard: 50000, export: 80000 },
+        jacket: { standard: 130000, export: 210000 },
+        tshirt: { standard: 38000, export: 58000 }
+    };
+
+    function updateQtyVal() {
+        const qtyInput = document.getElementById('orderQty').value;
+        const display = document.getElementById('qtyDisplay');
+        display.innerText = Number(qtyInput).toLocaleString('vi-VN') + ' chiếc';
+        calculateOrder();
+    }
+
+    let isCalculatorAttached = false;
+    let cachedEstimates = null;
+
+    function calculateOrder() {
+        const prod = document.getElementById('prodType').value;
+        const quality = document.getElementById('qualityStd').value;
+        const qty = parseInt(document.getElementById('orderQty').value);
+        
+        let unitPrice = basePrices[prod][quality];
+        
+        // Bulk volume discount multiplier
+        let discount = 1.0;
+        if (qty >= 10000) {
+            discount = 0.75; // 25% discount for massive bulk
+        } else if (qty >= 5000) {
+            discount = 0.82; // 18% discount
+        } else if (qty >= 2000) {
+            discount = 0.88; // 12% discount
+        } else if (qty >= 1000) {
+            discount = 0.92; // 8% discount
+        } else if (qty >= 500) {
+            discount = 0.96; // 4% discount
+        }
+        
+        const finalUnitPrice = Math.round(unitPrice * discount);
+        const finalTotal = finalUnitPrice * qty;
+
+        document.getElementById('pricePerUnit').innerText = finalUnitPrice.toLocaleString('vi-VN') + " VND / SP";
+        document.getElementById('totalPrice').innerText = finalTotal.toLocaleString('vi-VN') + " VND";
+
+        // Store calculations cache for contact form link
+        cachedEstimates = {
+            product: document.getElementById('prodType').options[document.getElementById('prodType').selectedIndex].text,
+            quality: document.getElementById('qualityStd').options[document.getElementById('qualityStd').selectedIndex].text,
+            quantity: qty,
+            unitPrice: finalUnitPrice,
+            total: finalTotal
+        };
+    }
+
+    // Inject estimation variables directly into Contact Form to increase converting action
+    function fillCalculatorDataToForm() {
+        if (!cachedEstimates) calculateOrder();
+        
+        isCalculatorAttached = true;
+        const noteContainer = document.getElementById('calculatorFormNote');
+        noteContainer.classList.remove('hidden');
+
+        const textInput = document.getElementById('clientNote');
+        textInput.value = `Xin chào WINWIN SEWING, tôi quan tâm dòng sản phẩm [${cachedEstimates.product}] - Đạt tiêu chuẩn [${cachedEstimates.quality}] với quy mô dự kiến [${cachedEstimates.quantity.toLocaleString('vi-VN')} chiếc] (Đơn giá tham khảo: ${cachedEstimates.unitPrice.toLocaleString('vi-VN')} VND / SP). Mong nhận báo giá trọn gói FOB/FPP.`;
+    }
+
+    function removeCalculatorData() {
+        isCalculatorAttached = false;
+        document.getElementById('calculatorFormNote').classList.add('hidden');
+        document.getElementById('clientNote').value = "";
+    }
+
+    // Handle B2B contact form submission smoothly
+    function handleFormSubmit(event) {
+        event.preventDefault();
+        
+        const name = document.getElementById('clientName').value;
+        const phone = document.getElementById('clientPhone').value;
+
+        if(!name || !phone) {
+            return;
+        }
+
+        // Display success dialog immediately
+        document.getElementById('contactForm').classList.add('hidden');
+        document.getElementById('successMessage').classList.remove('hidden');
+    }
+
+    function resetContactForm() {
+        document.getElementById('contactForm').reset();
+        removeCalculatorData();
+        document.getElementById('contactForm').classList.remove('hidden');
+        document.getElementById('successMessage').classList.add('hidden');
+    }
+
+    // Run when DOM elements load
+    window.onload = function() {
+        applySavedImages();
+        calculateOrder();
+    };
+</script>
+</body>
+</html>
